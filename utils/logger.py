@@ -9,12 +9,12 @@ class Logger(object):
     def scalar_summary(self, tag, value, step):
         """Log a scalar variable."""
         with self.writer.as_default():
-            tf.summary.scalar(tag, value)
+            tf.summary.scalar(tag, value, step=step)
             self.writer.flush()
 
     def list_of_scalars_summary(self, tag_value_pairs, step):
         """Log scalar variables."""
         with self.writer.as_default():
             for tag, value in tag_value_pairs:
-                tf.summary.scalar(tag, value)
+                tf.summary.scalar(tag, value, step=step)
             self.writer.flush()
