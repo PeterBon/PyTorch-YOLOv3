@@ -93,7 +93,7 @@ if __name__ == "__main__":
         "conf_noobj",
     ]
 
-    for epoch in range(opt.epochs):
+    for epoch in range(4, opt.epochs):
         model.train()
         start_time = time.time()
         for batch_i, (_, imgs, targets) in enumerate(dataloader):
