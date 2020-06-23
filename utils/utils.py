@@ -291,7 +291,7 @@ def build_targets(pred_boxes, pred_cls, target, anchors, ignore_thres):
     gwh = target_boxes[:, 2:]
     # Get anchors with best iou
     ious = torch.stack([bbox_wh_iou(anchor, gwh) for anchor in anchors])
-    best_ious, best_n = ious.max(0)  # 返回每一列中最大的元素
+    best_ious, best_n = ious.max(0)  # 返回每一列中最大的元素，且返回索引
     # Separate target values
     b, target_labels = target[:, :2].long().t()
     gx, gy = gxy.t()
