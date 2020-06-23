@@ -293,7 +293,7 @@ def build_targets(pred_boxes, pred_cls, target, anchors, ignore_thres):
     ious = torch.stack([bbox_wh_iou(anchor, gwh) for anchor in anchors])
     best_ious, best_n = ious.max(0)  # 返回每一列中最大的元素，且返回索引
     # Separate target values
-    b, target_labels = target[:, :2].long().t()
+    b, target_labels = target[:, :2].long().t() # 函数t()将tensor进行转置
     gx, gy = gxy.t()
     gw, gh = gwh.t()
     gi, gj = gxy.long().t()
