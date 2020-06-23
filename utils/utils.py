@@ -306,7 +306,7 @@ def build_targets(pred_boxes, pred_cls, target, anchors, ignore_thres):
         noobj_mask[b[i], anchor_ious > ignore_thres, gj[i], gi[i]] = 0
 
     # Coordinates
-    tx[b, best_n, gj, gi] = gx - gx.floor()
+    tx[b, best_n, gj, gi] = gx - gx.floor()  # 真实x减去其整数部分，得到0-1的tx，再将这个tx和模型退出的tx进行比较
     ty[b, best_n, gj, gi] = gy - gy.floor()
     # Width and height
     tw[b, best_n, gj, gi] = torch.log(gw / anchors[best_n][:, 0] + 1e-16)
