@@ -66,11 +66,11 @@ def create_modules(module_defs):
             modules.add_module(f"shortcut_{module_i}", EmptyLayer())
 
         elif module_def["type"] == "yolo":
-            anchor_idxs = [int(x) for x in module_def["mask"].split(",")]
+            anchor_idxs = [int(x) for x in module_def["mask"].split(",")]  # 拿到mask，例如6，7，8
             # Extract anchors
-            anchors = [int(x) for x in module_def["anchors"].split(",")]
-            anchors = [(anchors[i], anchors[i + 1]) for i in range(0, len(anchors), 2)]
-            anchors = [anchors[i] for i in anchor_idxs]
+            anchors = [int(x) for x in module_def["anchors"].split(",")]  # 拿到18个anchor的值
+            anchors = [(anchors[i], anchors[i + 1]) for i in range(0, len(anchors), 2)]  # 每2个为一组，共组成9个anchor
+            anchors = [anchors[i] for i in anchor_idxs]  # 拿到序号为mask的anchor，例如第6，7，8个anchor，对应13x13网格
             num_classes = int(module_def["classes"])
             img_size = int(hyperparams["height"])
             # Define detection layer
